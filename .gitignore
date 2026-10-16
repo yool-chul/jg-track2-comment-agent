@@ -1,0 +1,18 @@
+# 크롬 프로필 폴더 — 로그인 정보가 들어 있으므로 절대 커밋하지 않는다
+profiles/
+# AI 키 (.env.example만 올린다)
+.env
+.env.*
+!.env.example
+# 실행 기록 · 실패 캡처 · 자막 캐시
+data/
+.venv/
+.pytest_cache/
+__pycache__/
+.DS_Store
+# 개인 · 내부 메모 (vault에만 둔다)
+docs/00-과제-분석.md
+docs/02-시연-영상-스크립트.md
+docs/03-자기소개.md
+docs/demo/
+docs/diagrams/*.visual-check.*

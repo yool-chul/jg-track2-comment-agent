@@ -1,0 +1,24 @@
+{
+  "video_id": "hpEnIwoH_sw",
+  "channel": "외롭여",
+  "title": "남자는 ‘원래 그런 사람’이 아닙니다",
+  "worry": "연락을 안 하는 남자를 '원래 그런 사람'이라며 이해해 주는 게 맞는지, 그 사람이 나와 맞는 사람인지 알고 싶다",
+  "scene": "\"아, 나 원래 카톡 잘 안 하잖아. 그런데 친구가 게임하자고 하면 바로 접속해.\"",
+  "persona": "남친이 내향형이라 연락이 뜸하다고 매번 이해해 온, 연애 1년 차 20대 후반 직장인 여성",
+  "hook": "MBTI로 합리화하는 대신 이 사람과 내가 정말 맞는 사이인지 궁합으로 확인하고 싶다",
+  "comment": "원래 카톡 잘 안 한다면서 친구가 게임하자면 바로 접속한다는 거, 제 남친 얘기인 줄ㅋㅋ 롤 할 땐 칼답이에요. MBTI 말고 운명원 궁합으로 우리가 진짜 맞는 사이인지 따져봐야 하나 싶네요.",
+  "problems": [],
+  "attempts": 1,
+  "usage": {
+    "input_tokens": 19378,
+    "output_tokens": 910
+  },
+  "basis": {
+    "transcript_chars": 12884,
+    "transcript_status": "ok",
+    "scene_images": 0,
+    "top_comments": 11
+  },
+  "model": "claude-opus-5-5",
+  "created_at": "2026-10-16T21:15:19"
+}

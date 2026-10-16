@@ -1,0 +1,22 @@
+{
+  "video_id": "uHkNDVubUXc",
+  "channel": "리즈시절 LizTV",
+  "title": "Live streaming of 리즈시절 LizTV",
+  "worry": "이혼이나 사별 후 중년에 다시 싱글이 되어, 새로운 사람을 만나 재혼해도 될지 고민된다",
+  "scene": "미혼, 사별, 이혼 싱글이면 누구나 신청가능합니다 (힐링카페 줌 미팅)",
+  "persona": "이혼하고 몇 년째 혼자 지내며 새 만남을 망설이는 50대 여성",
+  "hook": "이혼 후 다시 누군가를 만나 재혼해도 괜찮은 운인지 알고 싶다",
+  "comment": "미혼, 사별, 이혼 싱글 누구나 된다는 힐링카페 줌 미팅 보고 용기 좀 났네요~ 이혼하고 5년째 혼자인 50대예요. 재혼해도 괜찮은 팔자인지 운명원 사주라도 한번 보고 싶어지네요.",
+  "problems": [],
+  "attempts": 1,
+  "usage": {
+    "input_tokens": 2838,
+    "output_tokens": 944
+  },
+  "basis": {
+    "transcript_chars": 0,
+    "top_comments": 4
+  },
+  "model": "claude-opus-5-5",
+  "created_at": "2026-10-16T00:34:23"
+}

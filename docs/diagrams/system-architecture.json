@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "유튜브 댓글 에이전트 구성도",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "post-path",
+        "label": "③ 게시 경로",
+        "focus": [
+          "dashboard",
+          "server",
+          "guard",
+          "poster",
+          "chrome",
+          "yt_watch"
+        ],
+        "note": "버튼 한 번에 가드 통과 → 프로필 실행 → 타이핑 · 게시 · 확인까지 이어지는 핵심 경로"
+      },
+      {
+        "id": "prepare-path",
+        "label": "① ② 준비 경로",
+        "focus": [
+          "server",
+          "feed",
+          "yt_feed",
+          "drafter",
+          "drafts",
+          "ai"
+        ],
+        "note": "RSS로 영상 목록을 받고, 초안은 drafts/를 먼저 보고 AI 키가 있을 때만 즉석 생성"
+      },
+      {
+        "id": "safety",
+        "label": "안전 · 기록",
+        "focus": [
+          "guard",
+          "ledger",
+          "poster"
+        ],
+        "note": "허용 채널 · 영상당 1개 · 하루 10개를 게시 전에 확인하고 결과와 실패 캡처를 남김"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "yt_feed",
+      "type": "external",
+      "label": "YouTube RSS",
+      "sublabel": "채널별 최신 영상",
+      "brand": "youtube",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "ai",
+      "type": "cloud",
+      "label": "AI API",
+      "sublabel": "선택 · 키 있을 때만",
+      "pos": [
+        520,
+        40
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "feed",
+      "type": "backend",
+      "label": "영상 불러오기",
+      "sublabel": "RSS 파싱 · 채널 확인",
+      "pos": [
+        40,
+        210
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "drafter",
+      "type": "backend",
+      "label": "초안 생성기",
+      "sublabel": "고민 한 줄 → 댓글",
+      "tag": "40~120자 검증",
+      "pos": [
+        520,
+        210
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "drafts",
+      "type": "database",
+      "label": "drafts/",
+      "sublabel": "제출 시점 초안",
+      "pos": [
+        760,
+        210
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "dashboard",
+      "type": "frontend",
+      "label": "대시보드 UI",
+      "sublabel": "세 칸 · 진행 상태 · 기록",
+      "tag": "localhost",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "로컬 서버",
+      "sublabel": "API · 진행 상태",
+      "pos": [
+        280,
+        380
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "security",
+      "label": "운영 가드",
+      "sublabel": "허용 채널 · 1개 · 일 10개",
+      "pos": [
+        520,
+        380
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "poster",
+      "type": "backend",
+      "label": "게시 자동화",
+      "sublabel": "Playwright",
+      "pos": [
+        760,
+        380
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "chrome",
+      "type": "frontend",
+      "label": "Chrome 프로필",
+      "sublabel": "유튜브1 · 2 · 3",
+      "tag": "user-data-dir",
+      "pos": [
+        1000,
+        380
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "yt_watch",
+      "type": "external",
+      "label": "YouTube 영상",
+      "sublabel": "허용 채널만 열기",
+      "brand": "youtube",
+      "pos": [
+        1000,
+        40
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "ledger",
+      "type": "database",
+      "label": "config · 기록",
+      "sublabel": "게시 로그 · 실패 캡처",
+      "pos": [
+        520,
+        550
+      ],
+      "size": [
+        160,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "심사자 Mac · localhost",
+      "wraps": [
+        "feed",
+        "drafter",
+        "drafts",
+        "dashboard",
+        "server",
+        "guard",
+        "poster",
+        "chrome",
+        "ledger"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ui-to-server",
+      "from": "dashboard",
+      "to": "server",
+      "label": "HTTP",
+      "variant": "emphasis"
+    },
+    {
+      "id": "server-to-feed",
+      "from": "server",
+      "to": "feed",
+      "label": "① 목록",
+      "fromSide": "top",
+      "toSide": "right"
+    },
+    {
+      "id": "feed-to-rss",
+      "from": "feed",
+      "to": "yt_feed",
+      "label": "RSS 조회",
+      "labelDy": -24
+    },
+    {
+      "id": "server-to-drafter",
+      "from": "server",
+      "to": "drafter",
+      "label": "② 초안",
+      "fromSide": "top",
+      "toSide": "left"
+    },
+    {
+      "id": "drafter-to-drafts",
+      "from": "drafter",
+      "to": "drafts",
+      "label": "조회"
+    },
+    {
+      "id": "drafter-to-ai",
+      "from": "drafter",
+      "to": "ai",
+      "label": "즉석 생성",
+      "variant": "dashed"
+    },
+    {
+      "id": "server-to-guard",
+      "from": "server",
+      "to": "guard",
+      "label": "③ 게시",
+      "variant": "emphasis"
+    },
+    {
+      "id": "guard-to-poster",
+      "from": "guard",
+      "to": "poster",
+      "label": "통과 시",
+      "variant": "emphasis"
+    },
+    {
+      "id": "guard-to-ledger",
+      "from": "guard",
+      "to": "ledger",
+      "label": "상한 확인",
+      "variant": "security",
+      "labelAt": [
+        600,
+        497
+      ]
+    },
+    {
+      "id": "poster-to-chrome",
+      "from": "poster",
+      "to": "chrome",
+      "label": "프로필 실행",
+      "variant": "emphasis"
+    },
+    {
+      "id": "chrome-to-video",
+      "from": "chrome",
+      "to": "yt_watch",
+      "label": "타이핑 · 게시",
+      "variant": "emphasis"
+    },
+    {
+      "id": "poster-to-ledger",
+      "from": "poster",
+      "to": "ledger",
+      "label": "결과 · 캡처",
+      "fromSide": "bottom",
+      "toSide": "right"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "① ② 준비 경로",
+      "items": [
+        "RSS로 API 키 없이 채널별 최신 영상 조회",
+        "초안은 drafts/ 우선, AI 키가 있으면 즉석 생성 (가점)",
+        "고민 한 줄 정리 → 시청자 페르소나 댓글 40~120자"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "③ 게시 경로",
+      "items": [
+        "프로필 폴더를 지정해 Chrome 실행 (persistent context)",
+        "댓글창 → 한 글자씩 타이핑 → 게시 → 내 댓글 확인",
+        "진행 상태 표시, 실패 시 사유와 화면 캡처 저장"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "안전 · 운영 규칙",
+      "items": [
+        "쿠키 · 비밀번호 미접근, AI 키 비노출",
+        "허용 채널 5개 + 본인 테스트 영상만 열기 · 게시",
+        "영상당 1개 · 하루 10개 · 시간순 기록을 코드로 강제"
+      ]
+    }
+  ]
+}

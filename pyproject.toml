@@ -1,0 +1,24 @@
+[project]
+name = "jg-comment-agent"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.14.0",
+    "fastapi>=0.143.2",
+    "playwright>=1.64.0",
+    "python-dotenv>=1.2.4",
+    "pyyaml>=6.0.3",
+    "requests>=2.34.2",
+    "uvicorn>=0.54.0",
+    "youtube-comment-downloader>=0.1.84",
+    "youtube-transcript-api>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

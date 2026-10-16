@@ -1,0 +1,12 @@
+# 프로필 · 채널 · 글자 수 · 상한 (과제 설정 예시 기준)
+profiles: [유튜브1, 유튜브2, 유튜브3]   # 크롬 프로필. 폴더는 profiles/<이름>
+channels:                              # 불러오기 · 게시 허용 범위
+  UCxlc0Ky0aWoD8uI09ad44Tg: 외롭여
+  UC-ee_ziASM251TMXe3P3VZA: 리즈시절 LizTV
+  UC09L3JxGVcn7SKLa-pjTEmw: 러브커넥트 유지연
+  UCVdtDW-HF4KluixGaBAcI4w: 연애데이터 노노
+  UCkGl2jieOVhGiHPdXF77Yyw: 심리조각
+test_videos: [KRRIF15e3hk]             # 본인 테스트 영상 (개발 중 게시 테스트 허용)
+test_only: false                       # true면 본인 테스트 영상에만 게시 (개발 · 시연 준비용 안전장치)
+comment: { min_chars: 40, max_chars: 120, brand: 운명원 }
+limits: { daily_max_comments: 10 }
