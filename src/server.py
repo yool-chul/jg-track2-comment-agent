@@ -152,7 +152,7 @@ def get_draft(video_id: str, regenerate: bool = False):
     if draft:
         return draft
     if not ai_key_set():
-        raise HTTPException(404, "이 영상의 초안이 없습니다. .env에 AI 키를 넣으면 바로 만들 수 있어요")
+        raise HTTPException(404, "초안이 없습니다")
     try:
         return drafts.create(anthropic.Anthropic(), video, CONFIG["comment"])
     except anthropic.APIError as e:
